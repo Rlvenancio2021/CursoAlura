@@ -1,0 +1,10 @@
+USE sucos_vendas;
+
+SELECT * FROM notas_fiscais;
+SELECT * FROM itens_notas_fiscais;
+
+SELECT YEAR(DATA_VENDA), ROUND(SUM(QUANTIDADE * PRECO),2) AS FATURAMENTO
+FROM notas_fiscais NF
+INNER JOIN itens_notas_fiscais INF
+ON NF.NUMERO = INF.NUMERO
+GROUP BY YEAR(DATA_VENDA);
