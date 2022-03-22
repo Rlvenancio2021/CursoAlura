@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+
+<input/>
+<button>Compare com o meu segredo</button>
+
+<script>
+	
+	var segredo = Math.round(Math.random() * 10);
+	console.log(segredo); // Comando para demonstrar no console do navegador o número selecionado, útil para realização de testes.
+	var input = document.querySelector("input");
+	input.focus(); // Deixa a caixa de diálogo em foco para o usuário já escrever novo valor, sem precisar selecionar a caixa.
+	
+
+	// Cria a função para impedir que a instrução IF seja executada antes mesmo de clicar no botão do programa.
+	function verifica() {
+		// "input.value" solicita ao programa o valor da variável input, capturado do mundo HTML.
+		if(input.value == segredo) {
+			alert("Você ACERTOU");
+		} else {
+			alert("Você ERROU");
+		}
+
+		input.value = ""; // Atribui valor em branco a variável "input" para que limpe a caixa de dialogo para receber nova entrada de valor.
+		input.focus();
+	}
+
+	// Associar a função criada (verificar) a tag <button> da instrução HTML.
+	var button = document.querySelector("button");
+	button.onclick = verifica; // Atribuimos a função VERIFICA ao BUTTON - porém apenas quando clicado "onclink" - mas não incluimos os parênteses () para que a função não seja executada e sim armazenada.
+	
+</script>

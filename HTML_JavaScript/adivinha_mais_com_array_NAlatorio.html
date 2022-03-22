@@ -1,0 +1,78 @@
+<meta charset="UTF-8">
+
+<input/>
+<button>Compare com o meu segredo</button>
+
+<script>
+	
+	// *** Contrução das FUNÇÕES a serem usadas no programa *** 
+	
+	function sorteia() {
+		return Math.round(Math.random() * 10);
+	}
+
+	function sorteiaNumeros(quantidade) {
+
+		var segredos = [];
+		var numero = 1;
+
+		while(numero <= quantidade) {
+			var numeroAleatorio = sorteia();
+
+			if(numeroAleatorio !== 0) {
+				var achou = false;
+
+				for(var posicao = 0; posicao < segredos.length; posicao++) {
+					if(segredos[posicao] == numeroAleatorio) {
+						achou = true;
+						break;
+					}
+				}
+
+				if(achou == false) {
+					segredos.push(numeroAleatorio); // Inclui um novo valor na lista segredo.
+					numero++; // Apenas irá realizar o incremento se após realizar busca na lista, não encontrar o número aleatório indicado.
+				}
+			}
+		}
+		return segredos;
+	}
+
+	// *** Inicio da LÓGICA do programa ***
+
+	var segredos = sorteiaNumeros(3); // Como parâmetro está sendo passado para a função sorteia números a quantidade de sorteios que deve ser realziados.
+
+	console.log(segredos); // Comando para demonstrar no console do navegador o número selecionado, útil para realização de testes.
+
+	var input = document.querySelector("input");
+	input.focus(); // Deixa a caixa de diálogo em foco para o usuário já escrever novo valor, sem precisar selecionar a caixa.
+	
+
+	// Cria a função para impedir que a instrução IF seja executada antes mesmo de clicar no botão do programa.
+	function verifica() {
+
+		var achou = false; // Variável criada para permitir exibir a mensagem de erro caso erre o número do segredo.
+		//Criamos a instrução "FOR" para que o programa percorra todo o ARRAY
+		//".length" retorna a quantidade de elementos que tem no ARRAY.
+		for(var posicao = 0;posicao < segredos.length; posicao++) {
+			// "input.value" solicita ao programa o valor da variável input, capturado do mundo HTML.
+			if(input.value == segredos[posicao]) {
+				alert("Você ACERTOU");
+				achou = true;
+				break;
+			} 
+		}
+
+		if(achou == false) {
+			alert("Você ERROU!!");
+		}
+
+		input.value = ""; // Atribui valor em branco a variável "input" para que limpe a caixa de dialogo para receber nova entrada de valor.
+		input.focus();
+	}
+
+	// Associar a função criada (verificar) a tag <button> da instrução HTML.
+	var button = document.querySelector("button");
+	button.onclick = verifica; // Atribuimos a função VERIFICA ao BUTTON - porém apenas quando clicado "onclink" - mas não incluimos os parênteses () para que a função não seja executada e sim armazenada.
+	
+</script>

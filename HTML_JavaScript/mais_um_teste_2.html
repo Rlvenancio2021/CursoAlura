@@ -1,0 +1,17 @@
+<meta charset="UTF-8">
+
+<input/>
+<button>Exibir testo digitado</button>
+
+
+<script>
+	
+	var input = document.querySelector("input");
+
+	function exibeTexto() {
+		alert(input.value); // Necessário utilizar a extenção ".value" para que o valor capturado seja exibido na mensagem
+	}
+
+	var button = document.querySelector("button");
+	button.onclick = exibeTexto;
+</script>

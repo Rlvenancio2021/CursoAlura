@@ -1,0 +1,62 @@
+<meta charset="UTF-8">
+
+<script>
+	
+	function pulaLinha() {
+		document.write("<br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+//Imprima todos os números entre 30 e 40 (inclusive 30 e 40), porém os números 33 e 37 não devem ser impressos! 
+
+	var contador = 30;
+
+	while(contador <= 40) {
+		if(contador != 33 && contador != 37) {
+			mostra(contador);
+		}
+		contador++;
+	}
+
+	mostra("FIM!");
+
+	pulaLinha();
+	mostra("<hr>");
+</script>
+
+<script>
+
+// Ou desta outra forma
+
+    function pulaLinha() {
+        document.write("<br>");
+    }
+
+    function mostra(frase) {
+        document.write(frase);
+        pulaLinha();
+    }
+
+    var contador = 30;
+
+    while(contador <= 40) {
+
+        if( contador == 33 ) {
+        contador = contador + 1;
+        }
+        else if(contador == 37) {    
+            contador = contador + 1;
+        }
+        else {
+        mostra(contador);
+        contador = contador + 1; 
+        }
+      }
+
+    mostra("FIM");
+
+</script>
