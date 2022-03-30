@@ -5,9 +5,20 @@ print("Bem vindo ao jogo de Adivinhação")
 print("********************************")
 
 numero_secreto = random.randrange(1, 101) # random.randrange() gera um número aleatório entre 0 e 100
-total_de_tentativas = 3
+total_de_tentativas = 0
 
-print(numero_secreto)
+# INSERI NÍVEIS DE PONTUAÇÃO #
+print("Qual nível de dificuldade?")
+print("(1) Fácil (2) Médio (3) Difícil")
+
+nivel = int(input("Defina o nível: "))
+
+if nivel == 1:
+    total_de_tentativas = 20
+elif nivel == 2:
+    total_de_tentativas = 10
+else:
+    total_de_tentativas = 5
 
 for rodada in range(1, total_de_tentativas + 1): # total_de_tentativas + 1 para garantir que tenhamos a 3 tentativas,
     #caso contrário quando a loop chegar no 3 ele irá parar sem executar.
