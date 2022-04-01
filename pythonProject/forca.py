@@ -4,7 +4,8 @@ def jogar_forca():
     print("********************************")
 
     palavra_secreta = "banana".upper()
-    letras_acertadas = ["_", "_", "_", "_", "_", "_"]
+    letras_acertadas = ["_" for letra in palavra_secreta] # automatiza o preenchimento inicial da lista,
+    # este formato chama-se List Comprehension / Compreensão de Lista.
 
     enforcou = False
     acertou = False
