@@ -24,6 +24,9 @@ def jogar_forca():
                 index += 1
         else:
             erros += 1
+            print("Você errou, ainda tem {} tentativas".format(len(palavra_secreta) - erros))
+            if erros == (len(palavra_secreta)-1):
+                print("Essa é a sua ultima chance")
 
         enforcou = erros == 6 # Verificar se atingiu o total de tentativas
         acertou = "_" not in letras_acertadas # Verificar o conteúdo das letras acertadas
