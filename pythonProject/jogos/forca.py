@@ -1,17 +1,9 @@
-import random
-
 def jogar_forca():
     print("********************************")
     print("*** Bem vindo ao jogo forca! ***")
     print("********************************")
-    print("****** Dica, é uma fruta *******")
 
-    lista_palavra = ["banana", "manga", "maça", "maracuja", "pera", "uva", "kiwi"]
-    sorteio = random.randrange(0, len(lista_palavra))
-
-    palavra_secreta = lista_palavra[sorteio].upper()
-
-
+    palavra_secreta = "banana".upper()
     letras_acertadas = ["_" for letra in palavra_secreta] # automatiza o preenchimento inicial da lista,
     # este formato chama-se List Comprehension / Compreensão de Lista.
 
@@ -24,6 +16,7 @@ def jogar_forca():
     while (not enforcou and not acertou):
 
         chute = input("Qual letra? ").strip().upper()
+
         if chute in palavra_secreta: # Condição criada para teste e incremento do erro, caso ocorra.
             index = 0
             for letra in palavra_secreta:
@@ -36,7 +29,7 @@ def jogar_forca():
             if erros == (len(palavra_secreta)-1):
                 print("Essa é a sua ultima chance")
 
-        if erros == len(palavra_secreta): # Verificar se atingiu o total de tentativas
+        if erros == 6: # Verificar se atingiu o total de tentativas
             break
 
         if "_" not in letras_acertadas: # Verificar o conteúdo das letras acertadas

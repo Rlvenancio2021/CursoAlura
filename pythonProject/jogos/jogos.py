@@ -1,4 +1,4 @@
-import forca
+from jogos import forca
 import adivinhacao
 
 print("********************************")
