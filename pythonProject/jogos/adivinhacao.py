@@ -1,60 +1,40 @@
-import random #Importa bibliotéca Random
+from Funcoes.funcoes_jogo_adivinhacao import *
 
 def jogar_adivinhacao():
 
-    print("********************************")
-    print("Bem vindo ao jogo de Adivinhação")
-    print("********************************")
+    imprime_mesangem_abertura()
+    numero_secreto = escolhe_numero_secreto()
+    print(numero_secreto)
+    pontos = 1000
 
-    numero_secreto = random.randrange(1, 101) # random.randrange() gera um número aleatório entre 0 e 100
-    total_de_tentativas = 0
-    pontos =1000
+    imprime_nivel_dificuldade()
+    nivel = escolhe_nivel_dificuldade()
+    total_de_tentativas = escolhe_numero_tentativas(nivel)
 
-    # INSERI NÍVEIS DE PONTUAÇÃO #
-    print("Qual nível de dificuldade?")
-    print("(1) Fácil (2) Médio (3) Difícil")
+    for rodada in range(1, total_de_tentativas + 1):
+        imprime_total_tentativas(rodada, total_de_tentativas)
+        chute = pede_chute()
 
-    nivel = int(input("Defina o nível: "))
-
-    if nivel == 1:
-        total_de_tentativas = 20
-    elif nivel == 2:
-        total_de_tentativas = 10
-    else:
-        total_de_tentativas = 5
-
-    # LÓGICA DO JOGO #
-    for rodada in range(1, total_de_tentativas + 1): # total_de_tentativas + 1 para garantir que tenhamos a 3 tentativas,
-        #caso contrário quando a loop chegar no 3 ele irá parar sem executar.
-        print("Tentativa {} de {}".format(rodada, total_de_tentativas))
-        chute = int(input("Digite o seu número: "))
-
-        if (chute < 1 or chute > 100):
-            print("Você deve digitar um número entre 1 e 100!")
-            continue # Continua com a próxima interação do programa
+        if chute < 1 or chute > 100:
+            imprime_mensagem_alerta()
+            continue
 
         acertou = chute == numero_secreto
         maior = chute > numero_secreto
         menor = chute < numero_secreto
 
-        if(acertou):
-            print("Parabéns! Você acertou e fez {} pontos".format(pontos))
-            break # Encerra a execução do programa caso a condição for tree.
+        if acertou:
+            imprime_msg_acertou(pontos)
+            break
         else:
-            if(maior):
-                print("O seu chute foi maior do que o número secreto!")
-                if rodada == total_de_tentativas:
-                    print("O número secreto era {}. Você fez {} pontos" .format(numero_secreto, pontos))
-            elif(menor):
-                print("O seu chute foi menor do que o número secreto!")
-                if rodada == total_de_tentativas:
-                    print("O número secreto era {}. Você fez {} pontos" .format(numero_secreto, pontos))
-            pontos_perdidos = abs(numero_secreto - chute) # função ABS retorna números absolutos
-            pontos = pontos - pontos_perdidos
+            if maior:
+                imprime_msg_quando_maior(rodada, total_de_tentativas, numero_secreto)
+            elif menor:
+                imprime_msg_quando_menor(rodada, total_de_tentativas, numero_secreto)
+
+        pontos = calcula_pontos(numero_secreto, chute, pontos)
 
     print("Fim do jogo")
 
-if(__name__ == "__main__"):
+if __name__ == "__main__":
     jogar_adivinhacao()
-# Quando executampos em linha da comando pelo "python3 adivinhacao.py", por traz o python cria uma variável e atribui
-# um valor a ela, porém quando importado ele não seta a variável
