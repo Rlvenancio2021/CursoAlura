@@ -29,8 +29,12 @@ class Conta:
     def get_titular(self):
         return self.__titular
 
-    def get_limite(self):
+    # PROPRIEDADE #
+    # Uma outra forma de adicionar GETTERS e SETTERS
+    @property # GET
+    def limite(self):
         return self.__limite
 
-    def set_limite(self, limite):
+    @limite.setter # SET
+    def limite(self, limite):
         self.__limite = limite
