@@ -20,32 +20,35 @@ class Programa:
     def dar_like(self):
         self._likes += 1
 
+    def imprime(self):
+        print(f'{self.nome} - {self.ano} - {self.likes} Likes')
+
     # CLASSE HERDEIRA (SUBCLASSES) #
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
         super().__init__(nome, ano) # Utilizamos o Super para chamar o inicializador da classe mãe (tbm conhecida como super)
         self.duracao = duracao
 
-    def retorna_cadastro_diferenciado(self):
-        pass
+    def imprime(self):
+        print(f'{self.nome} - {self.ano} - {self.duracao} min - {self.likes} Likes')
 
 class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
         super().__init__(nome, ano)
         self.temporadas = temporadas
 
-vingadores = Filme('vingadores - guerra infinita', 2018, 160)
-vingadores.dar_like()
-#print(f'{vingadores.nome} - {vingadores.ano} - {vingadores.duracao} - {vingadores.likes}')
+    def imprime(self):
+        print(f'{self.nome} - {self.ano} - {self.temporadas} temporadas -  {self.likes} Likes')
 
-atlanta = Serie('atlanta', 2018, 2)
+vingadores = Filme('vingadores - guerra infinita', 2018, 160) # instancia o objeto
+vingadores.dar_like()
+
+atlanta = Serie('atlanta', 2018, 2) # instancia o objeto)
 atlanta.dar_like()
 atlanta.dar_like()
-#print(f'{atlanta.nome} - {atlanta.ano} - {atlanta.temporadas} - {atlanta.likes}')
 
  # POLIMORFISMO #
 filmes_e_serias = [vingadores, atlanta]
 
-for programa in filmes_e_serias:
-    detalhes = programa.duracao if hasattr(programa, 'duracao') else programa.temporadas # Verifica se o Objeto possui o atributo mencionado
-    print(f'{programa.nome} - {detalhes} D - {programa.likes}')
+for programa in filmes_e_serias: # Corre a nossa lista e retorna o conteúdo independente da classe
+    programa.imprime() # imprime o resultado conforme o método específico de cada classe
