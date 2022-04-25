@@ -41,11 +41,22 @@ class Serie(Programa):
     def __str__(self):
         return f'{self.nome} - {self.ano} - {self.temporadas} temporadas -  {self.likes} Likes'
 
-class Playlist(list): # Para ficar de uma forma mais abstrata criamos uma CLASSE
-    # Com a indicação da CLASSE MÃE List, herdamos os comportamentos da list
+class Playlist: # Para ficar de uma forma mais abstrata criamos uma CLASSE
+    #Exclui superclasse List, por conta das restrições e possíveis bug caso a mesma seja alterada
     def __init__(self, nome, programas):
         self.nome = nome
-        super().__init__(programas) # Chama o inicializador da Classe MÃE List
+        self._programas = programas
+
+    def __getitem__(self, item): # Método que define alguém que é interável
+        return self._programas[item]
+
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        return len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160) # instancia o objeto
 atlanta = Serie('atlanta', 2018, 2) # instancia o objeto)
@@ -70,7 +81,7 @@ atlanta.dar_like()
 filmes_e_series = [vingadores, atlanta, demolidor, tmep]
 playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series) # criando uma instância do objeto Paylist
 
-print(f'Tamanho do playlit: {len(playlist_fim_de_semana)}')
+print(f'Tamanho do playlit: {len(playlist_fim_de_semana.listagem)}')
 
 for programa in playlist_fim_de_semana: # Corre a nossa lista e retorna o conteúdo independente da classe
     """
