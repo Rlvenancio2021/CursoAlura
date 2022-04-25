@@ -41,14 +41,11 @@ class Serie(Programa):
     def __str__(self):
         return f'{self.nome} - {self.ano} - {self.temporadas} temporadas -  {self.likes} Likes'
 
-class Playlist: # Para ficar de uma forma mais abstrata criamos uma CLASSE
+class Playlist(list): # Para ficar de uma forma mais abstrata criamos uma CLASSE
+    # Com a indicação da CLASSE MÃE List, herdamos os comportamentos da list
     def __init__(self, nome, programas):
         self.nome = nome
-        self.programas = programas
-
-    def tamanho(self): # Método para medir o tamanho da Playlist
-        return len(self.programas)
-
+        super().__init__(programas) # Chama o inicializador da Classe MÃE List
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160) # instancia o objeto
 atlanta = Serie('atlanta', 2018, 2) # instancia o objeto)
@@ -71,8 +68,15 @@ atlanta.dar_like()
 
  # POLIMORFISMO #
 filmes_e_series = [vingadores, atlanta, demolidor, tmep]
-paylist_fim_de_semana = Playlist('fim de semana', filmes_e_series) # criando uma instância do objeto Paylist
+playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series) # criando uma instância do objeto Paylist
 
-for programa in paylist_fim_de_semana.programas: # Corre a nossa lista e retorna o conteúdo independente da classe
-    # Porém desta forma é necessário que o programador conheça a estrutura da Classe Playlist para usar ".programas"
+print(f'Tamanho do playlit: {len(playlist_fim_de_semana)}')
+
+for programa in playlist_fim_de_semana: # Corre a nossa lista e retorna o conteúdo independente da classe
+    """
+    Desta forma pelo usa da CLASSE MÃE list, torno o nosso Objeto interável e com isso não precisamos conhecer
+    a estrutura da Classe.
+    """
     print(programa) # retorno conforme o método __str__ (trata-se de um código mais pythônico)
+
+print(f'Tá ou não tá? {demolidor in playlist_fim_de_semana}') # Se o Objeto "demolidor" está dentro do playlist_fim_de_semana"
