@@ -47,15 +47,15 @@ class Playlist: # Para ficar de uma forma mais abstrata criamos uma CLASSE
         self.nome = nome
         self._programas = programas
 
-    def __getitem__(self, item): # Método que define alguém que é interável
+    # DUCK TYPING #
+    def __getitem__(self, item): # Método que define alguém que é iterável
         return self._programas[item]
 
     @property
     def listagem(self):
         return self._programas
 
-    @property
-    def tamanho(self):
+    def __len__(self): # Faz com que a lista se comporte como um sized, uma idéia de algo que possui tamanho
         return len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160) # instancia o objeto
@@ -81,7 +81,7 @@ atlanta.dar_like()
 filmes_e_series = [vingadores, atlanta, demolidor, tmep]
 playlist_fim_de_semana = Playlist('fim de semana', filmes_e_series) # criando uma instância do objeto Paylist
 
-print(f'Tamanho do playlit: {len(playlist_fim_de_semana.listagem)}')
+print(f'Tamanho do playlit: {len(playlist_fim_de_semana)}')
 
 for programa in playlist_fim_de_semana: # Corre a nossa lista e retorna o conteúdo independente da classe
     """
