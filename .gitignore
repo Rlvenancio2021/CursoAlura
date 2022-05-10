@@ -1,2 +1,6 @@
 AC_Solucoes.py
 Resolve_Teste.py
+**__pycache__
+.idea/
+venv/
+main.py
