@@ -63,38 +63,67 @@
         <h1>Rodrigo Venâncio</h1>
         <div class="calculadora"> <!-- Div para criação da calculadora -->
             <h1>Calculadora</h1>
-            <p id="resultado">resultado</p>
+            <p id="resultado"></p>
             <table> <!-- Cria a tabela para acrescentar os botões da calculadora -->
                 <tr> <!-- Cria as linhas para inserir os botões -->
-                    <td><button class="botao">C</button></td>
-                    <td><button class="botao"><</button></td>
-                    <td><button class="botao">/</button></td>
-                    <td><button class="botao">x</button></td>
+                    <td><button class="botao" onclick="clean()">C</button></td>
+                    <td><button class="botao" onclick="back()"><</button></td>
+                    <td><button class="botao" onclick="insert('/')">/</button></td>
+                    <td><button class="botao" onclick="insert('*')">x</button></td>
                 </tr>
                 <tr>
-                    <td><button class="botao">7</button></td>
-                    <td><button class="botao">8</button></td>
-                    <td><button class="botao">9</button></td>
-                    <td><button class="botao">-</button></td>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
                 </tr>
                 <tr>
-                    <td><button class="botao">4</button></td>
-                    <td><button class="botao">5</button></td>
-                    <td><button class="botao">6</button></td>
-                    <td><button class="botao">+</button></td>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
                 </tr>
                 <tr>
-                    <td><button class="botao">1</button></td>
-                    <td><button class="botao">2</button></td>
-                    <td><button class="botao">3</button></td>
-                    <td rowspan="2"><button class="botao" style="height: 108px;">=</button></td>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2"><button class="botao" style="height: 108px;" onclick="calcular()">=</button></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button class="botao" style="width: 108px;">0</button></td>
-                    <td><button class="botao">.</button></td>
+                    <td colspan="2"><button class="botao" style="width: 108px;" onclick="insert('0')">0</button></td>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
                 </tr>
             </table>
         </div>
     </div>
+    <script>
+        // Função para apresentar na tela os números dos botões apertados.
+        function insert(num){
+            var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num; 
+        }
+
+        // Função de limpar tela da calculadora (não utlizamos a palavar "clear", pois é uma palavra reservada para o HTML)
+        function clean(){
+            document.getElementById('resultado').innerHTML = '';
+        }
+
+        // Função de apagar informações da tela da calculadora
+        function back(){
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+
+        // Função para realizar o calculo dos números digitados
+        function calcular(){
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado){
+                document.getElementById('resultado').innerHTML = eval(resultado); //"eval()" função que irá garantir que o cálculo seja realizado.
+            }
+            else {
+                document.getElementById('resultado').innerHTML = "Nada para calcular"
+            }
+        }
+    </script>
 </body>
 </html>
