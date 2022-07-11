@@ -5,42 +5,93 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
+    <!--
+    * {} - inclui a configuração em todos os elementos do HTML;
+    position: absolute - faz com que a calculadora ocupe apenas os espaço dela mesma;
+    padding - é a distância dos elementos com a borda;
+    cursor - defini como irá apresentar a seta do mouse.
+    -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .fundo {
+            background-image: linear-gradient(45deg, black, crimson);
+            height: 100vh;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        .calculadora    {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+            padding: 15px;
+        }
+        .botao   {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: rgb(31,31,31);
+            border: none;
+            color: #ffff;
+            margin: 3px;
+        }
+        .botao:hover{
+            background-color: black;
+        }
+        #resultado {
+            background-color: white;
+            width: 214px;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: black;
+            text-align: right;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
     <!-- Div para criação do plano de fundo -->
-    <div>
+    <div class="fundo">
         <h1>Rodrigo Venâncio</h1>
-        <div> <!-- Div para criação da calculadora -->
+        <div class="calculadora"> <!-- Div para criação da calculadora -->
             <h1>Calculadora</h1>
             <p id="resultado">resultado</p>
             <table> <!-- Cria a tabela para acrescentar os botões da calculadora -->
                 <tr> <!-- Cria as linhas para inserir os botões -->
-                    <td><button>C</button></td>
-                    <td><button><</button></td>
-                    <td><button>/</button></td>
-                    <td><button>x</button></td>
+                    <td><button class="botao">C</button></td>
+                    <td><button class="botao"><</button></td>
+                    <td><button class="botao">/</button></td>
+                    <td><button class="botao">x</button></td>
                 </tr>
                 <tr>
-                    <td><button>7</button></td>
-                    <td><button>8</button></td>
-                    <td><button>9</button></td>
-                    <td><button>-</button></td>
+                    <td><button class="botao">7</button></td>
+                    <td><button class="botao">8</button></td>
+                    <td><button class="botao">9</button></td>
+                    <td><button class="botao">-</button></td>
                 </tr>
                 <tr>
-                    <td><button>4</button></td>
-                    <td><button>5</button></td>
-                    <td><button>6</button></td>
-                    <td><button>+</button></td>
+                    <td><button class="botao">4</button></td>
+                    <td><button class="botao">5</button></td>
+                    <td><button class="botao">6</button></td>
+                    <td><button class="botao">+</button></td>
                 </tr>
                 <tr>
-                    <td><button>1</button></td>
-                    <td><button>2</button></td>
-                    <td><button>3</button></td>
-                    <td rowspan="2"><button>=</button></td>
+                    <td><button class="botao">1</button></td>
+                    <td><button class="botao">2</button></td>
+                    <td><button class="botao">3</button></td>
+                    <td rowspan="2"><button class="botao" style="height: 108px;">=</button></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button>0</button></td>
-                    <td><button>.</button></td>
+                    <td colspan="2"><button class="botao" style="width: 108px;">0</button></td>
+                    <td><button class="botao">.</button></td>
                 </tr>
             </table>
         </div>
